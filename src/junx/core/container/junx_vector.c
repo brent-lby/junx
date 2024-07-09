@@ -1,14 +1,17 @@
-﻿#include "junx_vector.h"
-#include <stdlib.h>
+﻿#include <stdlib.h>
+#include "junx_vector.h"
+#include "../rtti/junx_object.h"
 
 typedef struct
 {
+    struct _junx_object _base;
     char* _ptr;
     int _capacity;
     int _size;
     int _unit_size;
 } junx_vector_t;
-junx_handle_t create (int capa, int unit_size) 
+
+static junx_object create (int capa, int unit_size) 
 {
     junx_vector_t* vec = (junx_vector_t*)malloc(sizeof(junx_vector_t));
     if (vec == NULL)
@@ -21,12 +24,13 @@ junx_handle_t create (int capa, int unit_size)
         free(vec);
         return NULL;
     }
+    vec->_base.m_type = jt_vector;
     vec->_capacity = capa;
     vec->_size = 0;
     vec->_unit_size = unit_size;
     return vec;
 }
-void destroy(junx_handle_t* pvec)
+static void destroy(junx_object* pvec)
 {
     junx_vector_t** vec = (junx_vector_t**) pvec;
     if (vec != NULL && *vec != NULL)
@@ -43,7 +47,7 @@ void destroy(junx_handle_t* pvec)
         *vec = NULL;
     }
 }
-int push_back(junx_handle_t pvec, void* ptr)
+static int push_back(junx_object pvec, void* ptr)
 {
     if (pvec == NULL)
     {
@@ -64,7 +68,24 @@ int push_back(junx_handle_t pvec, void* ptr)
     return 0;
 }
 
-void* at(junx_handle_t pvec, int idx)
+static int pop_back(junx_object pvec)
+{
+    if (pvec == NULL)
+    {
+        return -1;
+    }
+    
+
+    junx_vector_t* vec = (junx_vector_t*)pvec;
+    if ( vec->_size < 1)
+    {
+        return -3;
+    }
+    --vec->_size;
+    return 0;
+}
+
+static void* at(junx_object pvec, int idx)
 {
     if (pvec == NULL)
     {
@@ -79,4 +100,9 @@ void* at(junx_handle_t pvec, int idx)
 
     return vec->_ptr + (idx * vec->_unit_size);
 }
-junx_vector_meta_t meta_vector = {create, destroy, push_back, at};
+junx_vector_meta_t meta_vector = {create, destroy, push_back,pop_back, at};
+
+junx_vector_meta_t* get_meta_vector()
+{
+    return &meta_vector;
+}

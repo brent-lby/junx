@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\projects\git_repo\junx\src\junx\core\container\junx_vector.c">
+      <Filter>junx\core\container</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\projects\git_repo\junx\src\junx\core\rtti\junx_object.c">
+      <Filter>junx\core\rtti</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\projects\git_repo\junx\src\junx\core\container\junx_vector.h">
+      <Filter>junx\core\container</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\projects\git_repo\junx\src\junx\core\rtti\junx_object.h">
+      <Filter>junx\core\rtti</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\projects\git_repo\junx\src\junx\junx.h">
+      <Filter>junx</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\projects\git_repo\junx\build\win-vs16\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="junx">
+      <UniqueIdentifier>{5E47EE8C-942F-3B46-ADC7-2BBF93D21FFF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="junx\core">
+      <UniqueIdentifier>{077FAC06-CE67-32D3-ABBC-5CE603E6B491}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="junx\core\container">
+      <UniqueIdentifier>{DDF24E4E-9B3E-3598-9DC0-F81A1F04D75E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="junx\core\rtti">
+      <UniqueIdentifier>{61BEA0C7-8197-329B-9453-4AEB9DCF4861}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

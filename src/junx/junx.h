@@ -17,8 +17,7 @@
 
 #endif
 
-typedef void* junx_handle_t;
-#define JUNX_NULL_HANDLE    ((junx_handle_t)NULL)
+
 
 
 

@@ -108,17 +108,17 @@ add_custom_command(TARGET junx_static POST_BUILD
 	COMMAND del /f /s "${JUNX_OUTPUT_DIR_DOS}\\include\\junx\\*.c"
 )
 
-add_custom_command(TARGET junx_shared POST_BUILD		
-	COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:junx_shared> ${LIBRARY_OUTPUT_PATH}/
-	COMMAND if exist ${LIBRARY_OUTPUT_PATH_DOS}\\Debug\\libjunx-shared-debug.pdb copy ${LIBRARY_OUTPUT_PATH_DOS}\\Debug\\libjunx-shared-debug.pdb ${LIBRARY_OUTPUT_PATH_DOS}
-	COMMAND if exist ${LIBRARY_OUTPUT_PATH_DOS}\\Release\\libjunx-shared-release.pdb copy ${LIBRARY_OUTPUT_PATH_DOS}\\Release\\libjunx-shared-release.pdb ${LIBRARY_OUTPUT_PATH_DOS}
-	COMMAND if exist ${LIBRARY_OUTPUT_PATH_DOS}\\Debug\\libjunx-shared-debug.lib copy ${LIBRARY_OUTPUT_PATH_DOS}\\Debug\\libjunx-shared-debug.lib ${LIBRARY_OUTPUT_PATH_DOS}
-	COMMAND if exist ${LIBRARY_OUTPUT_PATH_DOS}\\Release\\libjunx-shared-release.lib copy ${LIBRARY_OUTPUT_PATH_DOS}\\Release\\libjunx-shared-release.lib ${LIBRARY_OUTPUT_PATH_DOS}
-	COMMAND ${CMAKE_COMMAND} -E remove_directory ${LIBRARY_OUTPUT_PATH}/Debug
-	COMMAND ${CMAKE_COMMAND} -E remove_directory ${LIBRARY_OUTPUT_PATH}/Release
-	COMMAND xcopy /Y /E /I "${JUNX_LIBSRC_DIR_DOS}" "${JUNX_OUTPUT_DIR_DOS}\\include\\junx"
-	COMMAND del /f /s "${JUNX_OUTPUT_DIR_DOS}\\include\\junx\\*.c"
-)
+#add_custom_command(TARGET junx_shared POST_BUILD		
+#	COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:junx_shared> ${LIBRARY_OUTPUT_PATH}/
+#	COMMAND if exist ${LIBRARY_OUTPUT_PATH_DOS}\\Debug\\libjunx-shared-debug.pdb copy ${LIBRARY_OUTPUT_PATH_DOS}\\Debug\\libjunx-shared-debug.pdb ${LIBRARY_OUTPUT_PATH_DOS}
+#	COMMAND if exist ${LIBRARY_OUTPUT_PATH_DOS}\\Release\\libjunx-shared-release.pdb copy ${LIBRARY_OUTPUT_PATH_DOS}\\Release\\libjunx-shared-release.pdb ${LIBRARY_OUTPUT_PATH_DOS}
+#	COMMAND if exist ${LIBRARY_OUTPUT_PATH_DOS}\\Debug\\libjunx-shared-debug.lib copy ${LIBRARY_OUTPUT_PATH_DOS}\\Debug\\libjunx-shared-debug.lib ${LIBRARY_OUTPUT_PATH_DOS}
+#	COMMAND if exist ${LIBRARY_OUTPUT_PATH_DOS}\\Release\\libjunx-shared-release.lib copy ${LIBRARY_OUTPUT_PATH_DOS}\\Release\\libjunx-shared-release.lib ${LIBRARY_OUTPUT_PATH_DOS}
+#	COMMAND ${CMAKE_COMMAND} -E remove_directory ${LIBRARY_OUTPUT_PATH}/Debug
+#	COMMAND ${CMAKE_COMMAND} -E remove_directory ${LIBRARY_OUTPUT_PATH}/Release
+#	COMMAND xcopy /Y /E /I "${JUNX_LIBSRC_DIR_DOS}" "${JUNX_OUTPUT_DIR_DOS}\\include\\junx"
+#	COMMAND del /f /s "${JUNX_OUTPUT_DIR_DOS}\\include\\junx\\*.c"
+#)
 
 set(JUNX_LIBJUNX_INCLUDE_DIR ${JUNX_OUTPUT_DIR}/include)
 set(JUNX_LIBJUNX_LIB_DIR ${JUNX_OUTPUT_DIR}/lib)
