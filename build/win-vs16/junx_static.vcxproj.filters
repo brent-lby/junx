@@ -7,6 +7,9 @@
     <ClCompile Include="C:\projects\git_repo\junx\src\junx\core\rtti\junx_object.c">
       <Filter>junx\core\rtti</Filter>
     </ClCompile>
+    <ClCompile Include="C:\projects\git_repo\junx\src\junx\core\string\junx_string.c">
+      <Filter>junx\core\string</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\projects\git_repo\junx\src\junx\core\container\junx_vector.h">
@@ -15,7 +18,13 @@
     <ClInclude Include="C:\projects\git_repo\junx\src\junx\core\rtti\junx_object.h">
       <Filter>junx\core\rtti</Filter>
     </ClInclude>
+    <ClInclude Include="C:\projects\git_repo\junx\src\junx\core\string\junx_string.h">
+      <Filter>junx\core\string</Filter>
+    </ClInclude>
     <ClInclude Include="C:\projects\git_repo\junx\src\junx\junx.h">
+      <Filter>junx</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\projects\git_repo\junx\src\junx\static_params.h">
       <Filter>junx</Filter>
     </ClInclude>
   </ItemGroup>
@@ -34,6 +43,9 @@
     </Filter>
     <Filter Include="junx\core\rtti">
       <UniqueIdentifier>{61BEA0C7-8197-329B-9453-4AEB9DCF4861}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="junx\core\string">
+      <UniqueIdentifier>{0281D94A-3E86-3102-9713-EE30BAA6DAE9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

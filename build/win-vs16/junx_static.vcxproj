@@ -377,9 +377,12 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   <ItemGroup>
     <ClCompile Include="C:\projects\git_repo\junx\src\junx\core\container\junx_vector.c" />
     <ClCompile Include="C:\projects\git_repo\junx\src\junx\core\rtti\junx_object.c" />
+    <ClCompile Include="C:\projects\git_repo\junx\src\junx\core\string\junx_string.c" />
     <ClInclude Include="C:\projects\git_repo\junx\src\junx\core\container\junx_vector.h" />
     <ClInclude Include="C:\projects\git_repo\junx\src\junx\core\rtti\junx_object.h" />
+    <ClInclude Include="C:\projects\git_repo\junx\src\junx\core\string\junx_string.h" />
     <ClInclude Include="C:\projects\git_repo\junx\src\junx\junx.h" />
+    <ClInclude Include="C:\projects\git_repo\junx\src\junx\static_params.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="C:\projects\git_repo\junx\build\win-vs16\ZERO_CHECK.vcxproj">
