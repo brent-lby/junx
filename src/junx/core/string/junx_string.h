@@ -7,7 +7,7 @@ typedef struct _junx_string junx_string;
 
 typedef struct
 {
-    junx_object_static  _base;
+    junx_object  _base;
     junx_string* (*create) (const char* str, ju32_t len, ju32_t capa);
     jerr_t(*destroy) (junx_string** str);
 

@@ -1,26 +1,23 @@
 ﻿#include <stdlib.h>
+#include <stdio.h>
 #include "junx_vector.h"
 #include "../rtti/junx_object.h"
 
 static jerr_t destroy(junx_vector** vecp);
+extern junx_vector_static g_junx_vector_static;
 
 struct _junx_vector
 {
-    struct _junx_object _base;
+    junx_vector_static* _meta;
     char* _ptr;
     int _capacity;
     int _size;
     int _unit_size;
 };
 
- static unsigned short jvec_type_id(junx_object* ego)
+ static unsigned short jvec_type_id()
  {
-     junx_vector* vecp = (junx_vector*)ego;
-     if (vecp == NULL)
-     {
-         return jt_invalid;
-     }
-     return vecp->_base.m_type;
+     return jt_vector;
  }
 
  static junx_object* jvec_alloc()
@@ -30,6 +27,7 @@ struct _junx_vector
      {
          return NULL;
      }
+     vecp->_meta = &g_junx_vector_static;
      return (junx_object*) vecp;
  }
 
@@ -60,7 +58,7 @@ struct _junx_vector
          return -1;
      }
 
-     vecp->_base.m_type = jt_vector;
+     vecp->_meta = &g_junx_vector_static;
      vecp->_ptr = NULL;
      vecp->_capacity = 0;
      vecp->_size = 0;
@@ -88,6 +86,24 @@ struct _junx_vector
 
  }
 
+ static void junx_vector_debug(struct _junx_object* ego)
+ {
+     ji32_t i = 0;
+     ji32_t j = 0;
+     junx_vector* _ego = (junx_vector*)ego;
+     printf("vector @0x%p:\n",ego);
+     printf("\tcapacity : %u:\n", _ego->_capacity);
+     printf("\tsize : %u * %u = %u\n",_ego->_size, _ego->_unit_size, _ego->_size * _ego->_unit_size);
+     for (i = 0; i < _ego->_size; i++)
+     {
+         printf("\telement %u : ", i);
+         for (j = 0; j < _ego->_unit_size; j++)
+         {
+             printf("%02x ", (ju8_t)_ego->_ptr[i * _ego->_unit_size + j] );
+         }
+         printf("\n");
+     }
+ }
 
 
 static junx_vector* create (int capa, int unit_size)
@@ -103,7 +119,7 @@ static junx_vector* create (int capa, int unit_size)
         free(vecp);
         return NULL;
     }
-    vecp->_base.m_type = jt_vector;
+    vecp->_meta = &g_junx_vector_static;
     vecp->_capacity = capa;
     vecp->_size = 0;
     vecp->_unit_size = unit_size;
@@ -141,7 +157,7 @@ static int push_back(junx_vector*vecp, void* ptr)
     {
         return -3;
     }
-    memcpy(vecp->_ptr+vecp->_size, ptr, vecp->_unit_size);
+    memcpy(vecp->_ptr+vecp->_size*vecp->_unit_size, ptr, vecp->_unit_size);
     vecp->_size = vecp->_size + 1;
     return 0;
 }
@@ -182,9 +198,13 @@ junx_vector_static g_junx_vector_static = {
       , jvec_destory
       , jvec_clone
       , jvec_compare
-    , junx_vector_init
-    , junx_vector_reset}
+      , junx_vector_init
+      , junx_vector_reset
+      , junx_vector_debug
+    }
+
       , create, destroy, push_back,pop_back, at };
+
 
 junx_vector_static* get_junx_vector_static()
 {

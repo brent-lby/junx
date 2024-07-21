@@ -9,7 +9,7 @@ typedef struct _junx_vector junx_vector;
 
 typedef struct 
 {
-    junx_object_static  _base;
+    junx_object_static           _base;
     junx_vector*(*create) (int capa, int unit_size);
     jerr_t (*destroy) ( junx_vector** vec);
     int (*push_back)( junx_vector* vec,void* ptr);
