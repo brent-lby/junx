@@ -12,7 +12,8 @@ void process_junx_objct(junx_object *  obj)
 
 int main(int argc, char* argv[]) 
 {
-    long long num = 23;
+    long long i = 0;
+    //long long num = 23;
     JUNX_UNUSED(argc);
     JUNX_UNUSED(argv);
 
@@ -23,14 +24,17 @@ int main(int argc, char* argv[])
     }
 
 
-    process_junx_objct((junx_object*)(jvec));
+    //process_junx_objct((junx_object*)(jvec));
 
-
-    JUNX_DER_METHODS(jvec, junx_vector_static)->push_back(jvec, &num);
-
-    get_junx_vector_static()->push_back(jvec, &num);
-    num = 239082367234905;
-    get_junx_vector_static()->push_back(jvec, &num);
+    for (; i < 100; i++)
+    {
+        JUNX_DER_METHODS(jvec, junx_vector_static)->push_front(jvec, &i);
+    }
+    for (i = 0; i < 100; i++) 
+    {
+        //JUNX_DER_METHODS(jvec, junx_vector_static)->pop_back(jvec);
+    }
+    
     JUNX_METHODS(jvec)->_debug((junx_object*)jvec);
 
     get_junx_vector_static()->destroy(&jvec);

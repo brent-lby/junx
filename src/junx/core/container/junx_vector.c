@@ -4,6 +4,7 @@
 #include "../rtti/junx_object.h"
 
 static jerr_t destroy(junx_vector** vecp);
+static jerr_t junx_vector_expand(junx_vector* vec, ji32_t exp_num);
 extern junx_vector_static g_junx_vector_static;
 
 struct _junx_vector
@@ -155,9 +156,36 @@ static int push_back(junx_vector*vecp, void* ptr)
     
     if (vecp->_capacity - vecp->_size < 1 )
     {
-        return -3;
+        if (junx_vector_expand(vecp, 4) < 0)
+        {
+            return -3;
+        }
     }
     memcpy(vecp->_ptr+vecp->_size*vecp->_unit_size, ptr, vecp->_unit_size);
+    vecp->_size = vecp->_size + 1;
+    return 0;
+}
+
+static int junx_vector_push_front(junx_vector* vecp, void* ptr)
+{
+    if (vecp == NULL)
+    {
+        return -1;
+    }
+    if (ptr == NULL)
+    {
+        return -2;
+    }
+
+    if (vecp->_capacity - vecp->_size < 1)
+    {
+        if (junx_vector_expand(vecp, 4) < 0)
+        {
+            return -3;
+        }
+    }
+    memmove(vecp->_ptr + vecp->_unit_size, vecp->_ptr, vecp->_size * vecp->_unit_size);
+    memcpy(vecp->_ptr, ptr, vecp->_unit_size);
     vecp->_size = vecp->_size + 1;
     return 0;
 }
@@ -192,6 +220,27 @@ static void* at(junx_vector* vecp, int idx)
     return vecp->_ptr + (idx * vecp->_unit_size);
 }
 
+static jerr_t junx_vector_expand(junx_vector* vec, ji32_t exp_num) 
+{
+    if (vec == NULL)
+    {
+        return -1;
+    }
+
+    if (exp_num < 1)
+    {
+        return -2;
+    }
+    char* tmp = (char*)realloc(vec->_ptr, (exp_num + vec->_capacity) * vec->_unit_size);
+    if (tmp == NULL)
+    {
+        return -3;
+    }
+    vec->_capacity = exp_num + vec->_capacity;
+    vec->_ptr = tmp;
+    return 0;
+}
+
 junx_vector_static g_junx_vector_static = {
     { jvec_type_id
       , jvec_alloc
@@ -203,7 +252,7 @@ junx_vector_static g_junx_vector_static = {
       , junx_vector_debug
     }
 
-      , create, destroy, push_back,pop_back, at };
+      , create, destroy, push_back, junx_vector_push_front, pop_back, at, junx_vector_expand };
 
 
 junx_vector_static* get_junx_vector_static()

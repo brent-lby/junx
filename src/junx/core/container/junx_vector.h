@@ -13,8 +13,10 @@ typedef struct
     junx_vector*(*create) (int capa, int unit_size);
     jerr_t (*destroy) ( junx_vector** vec);
     int (*push_back)( junx_vector* vec,void* ptr);
+    int (*push_front)(junx_vector* vec, void* ptr);
     int (*pop_back) ( junx_vector* vec);
     void* (*at)( junx_vector* vec, int idx);
+    jerr_t(*expand)(junx_vector* vec, ji32_t exp_num);
 } junx_vector_static;
 
 
