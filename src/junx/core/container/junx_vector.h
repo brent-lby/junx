@@ -15,12 +15,14 @@ typedef struct
     int (*push_back)( junx_vector* vec,void* ptr);
     int (*push_front)(junx_vector* vec, void* ptr);
     int (*pop_back) ( junx_vector* vec);
+    int (*pop_front) (junx_vector* vec);
     void* (*at)( junx_vector* vec, int idx);
     jerr_t(*expand)(junx_vector* vec, ji32_t exp_num);
 } junx_vector_static;
 
 
  junx_vector_static* get_junx_vector_static();
+
 
 
 #endif // !_junx_vector_h_

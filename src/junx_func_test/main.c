@@ -30,9 +30,11 @@ int main(int argc, char* argv[])
     {
         JUNX_DER_METHODS(jvec, junx_vector_static)->push_front(jvec, &i);
     }
-    for (i = 0; i < 100; i++) 
+    JUNX_METHODS(jvec)->_debug((junx_object*)jvec);
+    //for (i = 0; i < 100; i++) 
     {
-        //JUNX_DER_METHODS(jvec, junx_vector_static)->pop_back(jvec);
+        JUNX_DER_METHODS(jvec, junx_vector_static)->pop_front(jvec);
+        
     }
     
     JUNX_METHODS(jvec)->_debug((junx_object*)jvec);

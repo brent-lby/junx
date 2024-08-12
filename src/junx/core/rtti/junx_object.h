@@ -6,7 +6,8 @@
 enum ju16_t
 {
     jt_vector = 0,
-    jt_count = 1,
+    jt_string,
+    jt_count,
 };
 
 typedef struct _junx_object {

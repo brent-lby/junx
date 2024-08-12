@@ -29,6 +29,9 @@ struct _junx_vector
          return NULL;
      }
      vecp->_meta = &g_junx_vector_static;
+     vecp->_ptr = NULL;
+     vecp->_capacity = 0;
+     vecp->_size = 0;
      return (junx_object*) vecp;
  }
 
@@ -205,6 +208,22 @@ static int pop_back(junx_vector* vecp)
     return 0;
 }
 
+static int junx_vector_pop_front(junx_vector* vecp)
+{
+    if (vecp == NULL)
+    {
+        return -1;
+    }
+
+    if (vecp->_size < 1)
+    {
+        return -3;
+    }
+    memmove(vecp->_ptr, vecp->_ptr + 1 * vecp->_unit_size, vecp->_size * vecp->_unit_size);
+    --vecp->_size;
+    return 0;
+}
+
 static void* at(junx_vector* vecp, int idx)
 {
     if (vecp == NULL)
@@ -252,7 +271,7 @@ junx_vector_static g_junx_vector_static = {
       , junx_vector_debug
     }
 
-      , create, destroy, push_back, junx_vector_push_front, pop_back, at, junx_vector_expand };
+      , create, destroy, push_back, junx_vector_push_front, pop_back, junx_vector_pop_front, at, junx_vector_expand };
 
 
 junx_vector_static* get_junx_vector_static()
