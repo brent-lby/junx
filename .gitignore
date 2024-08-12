@@ -9,7 +9,3 @@ output/
 build/linux-gcc/*
 !
 build/linux-gcc/CMakeLists.txt
-output/
-build/linux-clion/*
-!
-build/linux-clion/CMakeLists.txt
