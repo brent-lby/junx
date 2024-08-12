@@ -1,5 +1,8 @@
 #include "junx_string.h"
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
 
 static jerr_t destroy(junx_string** str);
 static jerr_t junx_string_expand(junx_string* str, ji32_t exp_num);
@@ -114,7 +117,11 @@ static junx_string* create (const char* cstr, ji32_t len, ji32_t capa)
         free(str);
         return NULL;
     }
+#ifdef  WINDOWS
     strncpy_s(str->_ptr, capa, cstr, len);
+#else
+    strncpy(str->_ptr, cstr, len);
+#endif
     str->_meta = &g_junx_string_static;
     str->_capacity = capa;
     str->_size = len;

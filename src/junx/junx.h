@@ -5,7 +5,7 @@
 #   include <windows.h>
 #else
 #   include <unistd.h>
-#   include <sys/types>
+#   include <sys/types.h>
 #endif
 
 #include "static_params.h"
