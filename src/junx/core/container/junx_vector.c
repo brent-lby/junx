@@ -1,5 +1,6 @@
 ﻿#include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 #include "junx_vector.h"
 #include "../rtti/junx_object.h"
 
