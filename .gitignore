@@ -2,14 +2,8 @@
 output/
 build/win-vs16/*
 !build/win-vs16/CMakeLists.txt
-!build/win-vs16/*.vcxproj
-!build/win-vs16/*.filters
-!build/win-vs16/libpilo.sln
 build/win-vs17/*
 !build/win-vs17/CMakeLists.txt
-!build/win-vs17/*.vcxproj
-!build/win-vs17/*.filters
-!build/win-vs17/libpilo.sln
 output/
 build/linux-gcc/*
 !
