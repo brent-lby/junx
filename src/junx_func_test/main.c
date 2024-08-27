@@ -20,11 +20,12 @@
 #ifdef WINDOWS
 int print_dir_content(const char* dir_name, int level)
 {
+    size_t path_len = 0;
+    char buffer[JUNX_PATH_MAX] = { 0 };
     HANDLE dp = INVALID_HANDLE_VALUE;
     WIN32_FIND_DATA entry = {0};
     BOOL b_success = TRUE;
-
-    char buffer[JUNX_PATH_MAX] = { 0 };
+    int res = 0;
     char leading_space[256] = { 0 };
     int i = 0;
     for (; i < level; i++)
@@ -46,7 +47,24 @@ int print_dir_content(const char* dir_name, int level)
     {
         if ((entry.dwFileAttributes  &FILE_ATTRIBUTE_DIRECTORY) != 0)
         {
-            printf("%s%s\t(dir)\n", leading_space, entry.cFileName);
+            if ((strcmp(entry.cFileName, "..") != 0)
+                && (strcmp(entry.cFileName, ".") != 0)
+                ) 
+            {
+                printf("%s%s\t(dir)\n", leading_space, entry.cFileName);
+                path_len = strlen(buffer);
+                buffer[path_len - 3] = 0;
+                strncat_s(buffer, JUNX_PATH_MAX, entry.cFileName, strlen(entry.cFileName));
+                res = print_dir_content(buffer, level + 1);
+                if (res != 0)
+                {
+                    printf("failed to print dir: %s\n", entry.cFileName);
+                    FindClose(dp);;
+                    exit(-1);
+                }
+            }
+
+            
         }
         else 
         {
