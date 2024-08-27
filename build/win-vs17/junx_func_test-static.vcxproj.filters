@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\projects\git_repo\junx\src\junx_func_test\main.c">
+      <Filter>junx_func_test</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\projects\git_repo\junx\build\win-vs17\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="junx_func_test">
+      <UniqueIdentifier>{FF615CAF-016E-3087-8125-03A6FEC4C337}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
