@@ -8,6 +8,7 @@
 #include <string.h>
 #include <stdlib.h>
 
+//i changed this
 #ifdef WINDOWS
 #define JUNX_PATH_MAX      MAX_PATH
 
